@@ -5,13 +5,7 @@ import { IconX } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useRef, useEffect } from "react";
 
-export default function Sidebar({
-  sidebarOpen,
-  setSidebarOpenAction,
-}: {
-  sidebarOpen: boolean;
-  setSidebarOpenAction: (open: boolean) => void;
-}) {
+export default function Sidebar({ sidebarOpen, setSidebarOpenAction }: { sidebarOpen: boolean; setSidebarOpenAction: (open: boolean) => void; }) {
   const pathname = usePathname();
   const sidebarRef = useRef<HTMLDivElement>(null);
 

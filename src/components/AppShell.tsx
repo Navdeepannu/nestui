@@ -2,18 +2,20 @@
 import { useState } from "react";
 import { Navbar } from "@/components/navbar";
 import Sidebar from "@/components/docs/Sidebar";
+import { usePathname } from "next/navigation";
 
 export default function AppShell({ children }: { children: React.ReactNode }) {
-  const [sidebarOpen, setSidebarOpenAction] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const pathname = usePathname();
+  const showSidebar = pathname !== "/";
   return (
     <>
-      <Navbar setSidebarOpenAction={setSidebarOpenAction} />
-      <div className="flex min-h-screen overflow-hidden">
-        <Sidebar
-          sidebarOpen={sidebarOpen}
-          setSidebarOpenAction={setSidebarOpenAction}
-        />
-        <main className="min-w-0 flex-1 overflow-x-hidden">{children}</main>
+      <Navbar setSidebarOpenAction={setSidebarOpen} />
+      <div className="min-h-screen flex">
+        {showSidebar && (
+          <Sidebar sidebarOpen={sidebarOpen} setSidebarOpenAction={setSidebarOpen} />
+        )}
+        <main className="flex-1">{children}</main>
       </div>
     </>
   );

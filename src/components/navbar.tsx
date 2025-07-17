@@ -10,6 +10,7 @@ import {
   IconBrandGithub,
   IconMenu2,
 } from "@tabler/icons-react";
+import { SearchDialog } from "./search-dialog";
 
 export const Navbar = ({
   setSidebarOpenAction,
@@ -105,8 +106,16 @@ export const Navbar = ({
             </button>
           </div>
         )}
+
         {/* Desktop Navigation */}
         <ul className="text-muted-foreground text-md divide-border hidden items-stretch divide-x min-[1000px]:flex dark:divide-zinc-800">
+          {/* Search dialog  */}
+          {pathname !== "/" && (
+            <li className="flex items-center px-5">
+              <SearchDialog />
+            </li>
+          )}
+
           {navItems.map((item, idx) => (
             <li key={idx} className="group relative flex items-center">
               <Link
