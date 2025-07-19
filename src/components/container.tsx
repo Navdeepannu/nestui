@@ -10,7 +10,7 @@ export const Container = ({
   return (
     <div
       className={cn(
-        "relative flex min-h-screen flex-col items-center justify-center",
+        "flex min-h-screen flex-col items-center justify-center",
         className,
       )}
     >

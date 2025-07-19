@@ -9,8 +9,10 @@ import {
   IconMoonStars,
   IconBrandGithub,
   IconMenu2,
+  IconMoon,
 } from "@tabler/icons-react";
 import { SearchDialog } from "./search-dialog";
+import { motion } from "motion/react";
 
 export const Navbar = ({
   setSidebarOpenAction,
@@ -43,7 +45,7 @@ export const Navbar = ({
   };
 
   return (
-    <div className="dark:bg-background border-border bg-background sticky top-0 z-30 w-full border-b backdrop-blur dark:border-zinc-800">
+    <div className="border-border sticky top-0 z-30 w-full border-b backdrop-blur dark:border-zinc-800">
       <nav className="mx-auto flex h-14 items-center justify-between">
         {/* Logo */}
         <div className="flex items-stretch pl-4">
@@ -90,7 +92,7 @@ export const Navbar = ({
               />
             ) : (
               <IconMoonStars
-                className="text-foreground cursor-pointer"
+                className="text-foreground cursor-pointer hover:rotate-45"
                 size={24}
                 onClick={() => setTheme("dark")}
               />
@@ -127,7 +129,7 @@ export const Navbar = ({
                 {item.title}
               </Link>
               <div
-                className={`absolute bottom-0 left-0 h-0.5 w-0 bg-neutral-400 opacity-0 transition-all duration-300 group-hover:w-full group-hover:opacity-100 ${
+                className={`absolute bottom-0 left-0 h-0.5 w-0 bg-neutral-400 opacity-0 transition-all duration-400 group-hover:w-full group-hover:opacity-100 ${
                   isNavActive(item.href) ? "w-full opacity-100" : ""
                 }`}
               ></div>
@@ -138,17 +140,35 @@ export const Navbar = ({
           {pathname !== "/" && (
             <li className="divide-border flex items-center gap-4 divide-x px-5 py-2 dark:divide-zinc-800">
               {mounted && resolvedTheme === "dark" ? (
-                <IconSunLow
-                  className="hover:text-foreground cursor-pointer"
-                  size={26}
-                  onClick={() => setTheme("light")}
-                />
+                <motion.div
+                  key="sun"
+                  initial={{ opacity: 0, rotate: 180, scale: 0.5 }}
+                  animate={{ opacity: 1, rotate: 360, scale: 1 }}
+                  exit={{ opacity: 0, rotate: 90, scale: 0.5 }}
+                  whileHover={{ scale: 1.2, rotate: 380 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <IconSunLow
+                    className="hover:text-foreground cursor-pointer"
+                    size={26}
+                    onClick={() => setTheme("light")}
+                  />
+                </motion.div>
               ) : (
-                <IconMoonStars
-                  className="hover:text-foreground cursor-pointer"
-                  size={26}
-                  onClick={() => setTheme("dark")}
-                />
+                <motion.div
+                  key="moon"
+                  initial={{ opacity: 0, rotate: -180, scale: 0.5 }}
+                  animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                  exit={{ opacity: 0, rotate: -90, scale: 0.5 }}
+                  whileHover={{ scale: 1.2, rotate: -45 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
+                  <IconMoon
+                    className="hover:text-foreground cursor-pointer"
+                    size={26}
+                    onClick={() => setTheme("dark")}
+                  />
+                </motion.div>
               )}
             </li>
           )}

@@ -67,11 +67,12 @@ export function SearchDialog() {
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="text-muted-foreground hover:text-foreground w-full justify-start"
+          size="lg"
+          className="text-muted-foreground hover:bg-background w-full justify-start border-neutral-200 shadow-sm transition-transform"
         >
           <IconSearch className="text-neutral-600" />
           Search Components
-          <span className="bg-muted flex items-center gap-1 rounded px-1.5 py-0.5 text-sm text-neutral-200">
+          <span className="bg-muted flex items-center gap-1 rounded px-1.5 py-0.5 text-sm dark:text-neutral-200">
             <IconCommand />K
           </span>
         </Button>

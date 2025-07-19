@@ -5,7 +5,13 @@ import { IconX } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useRef, useEffect } from "react";
 
-export default function Sidebar({ sidebarOpen, setSidebarOpenAction }: { sidebarOpen: boolean; setSidebarOpenAction: (open: boolean) => void; }) {
+export default function Sidebar({
+  sidebarOpen,
+  setSidebarOpenAction,
+}: {
+  sidebarOpen: boolean;
+  setSidebarOpenAction: (open: boolean) => void;
+}) {
   const pathname = usePathname();
   const sidebarRef = useRef<HTMLDivElement>(null);
 
@@ -47,7 +53,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpenAction }: { sidebar
         <li key={link.href} className="relative">
           <Link
             href={link.href}
-            className={`group relative flex w-full items-center rounded-lg border px-2 py-3 text-sm transition-all duration-300 ${
+            className={`group relative flex w-full items-center rounded-lg border px-2 py-3 text-sm transition-transform duration-300 ${
               isActive
                 ? "border-zinc-300 bg-zinc-100 text-black dark:border-zinc-700 dark:bg-zinc-900 dark:text-neutral-50"
                 : "text-muted-foreground border-transparent hover:bg-zinc-100 hover:text-neutral-950 dark:hover:bg-zinc-900 dark:hover:text-neutral-50"
@@ -56,7 +62,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpenAction }: { sidebar
           >
             {/* Left accent bar (active only) */}
             {isActive && (
-              <span className="relative h-[10px] w-[4px] rounded bg-[rgba(0,163,255,0.8)] opacity-100 transition-all duration-300 dark:bg-[rgba(0,163,255,0.3)]" />
+              <span className="relative h-[10px] w-[4px] rounded bg-[rgba(0,163,255,0.8)] opacity-100 transition-transform duration-300 dark:bg-[rgba(0,163,255,0.3)]" />
             )}
             <span className="relative z-10 flex-1 pl-3">{link.label}</span>
           </Link>
