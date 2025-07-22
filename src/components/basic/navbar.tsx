@@ -11,8 +11,8 @@ import {
   IconMenu2,
   IconMoon,
 } from "@tabler/icons-react";
-import { SearchDialog } from "./search-dialog";
 import { motion } from "motion/react";
+import { SearchDialog } from "./search-dialog";
 
 export const Navbar = ({
   setSidebarOpenAction,
@@ -45,7 +45,7 @@ export const Navbar = ({
   };
 
   return (
-    <div className="border-border sticky top-0 z-30 w-full border-b backdrop-blur dark:border-zinc-800">
+    <div className="border-border fixed top-0 right-0 left-0 z-50 w-full border-b bg-white/80 backdrop-blur dark:border-zinc-800 dark:bg-black/80">
       <nav className="mx-auto flex h-14 items-center justify-between">
         {/* Logo */}
         <div className="flex items-stretch pl-4">

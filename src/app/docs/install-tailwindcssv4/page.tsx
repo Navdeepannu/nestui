@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { DocLayout } from "@/components/docs/DocLayout";
+import { DocLayout } from "@/components/docsLayout/DocLayout";
 import { TabButton, FileNamePill } from "@/components/ui/TabButton";
 
 const installCommands = {
@@ -11,14 +11,16 @@ const installCommands = {
 };
 
 const createProjectCommands = {
-    npm: "npx create-next-app@latest my-app --typescript --eslint && cd my-app",
-    pnpm: "pnpm dlx create-next-app@latest my-app --typescript --eslint && cd my-app",
-    yarn: "yarn create next-app my-app --typescript --eslint && cd my-app",
-    bun : "bunx create-next-app@latest my-app --typescript --eslint && cd my-app"
-}
+  npm: "npx create-next-app@latest my-app --typescript --eslint && cd my-app",
+  pnpm: "pnpm dlx create-next-app@latest my-app --typescript --eslint && cd my-app",
+  yarn: "yarn create next-app my-app --typescript --eslint && cd my-app",
+  bun: "bunx create-next-app@latest my-app --typescript --eslint && cd my-app",
+};
 
 export default function Page() {
-  const [selectedTab, setSelectedTab] = useState<"npm" | "pnpm" | "yarn" | "bun">("npm");
+  const [selectedTab, setSelectedTab] = useState<
+    "npm" | "pnpm" | "yarn" | "bun"
+  >("npm");
 
   return (
     <DocLayout
@@ -29,7 +31,7 @@ export default function Page() {
           title: "Create a new project",
           content: (
             <div className="">
-              <div className="flex gap-2 mb-2">
+              <div className="mb-2 flex gap-2">
                 {(["npm", "pnpm", "yarn", "bun"] as const).map((tab) => (
                   <TabButton
                     key={tab}
@@ -47,17 +49,17 @@ export default function Page() {
         {
           title: "Install Tailwind CSS",
           content: (
-              <div className="flex gap-2 mb-2">
-                {(["npm", "pnpm", "yarn", "bun"] as const).map((tab) => (
-                  <TabButton
-                    key={tab}
-                    active={selectedTab === tab}
-                    onClick={() => setSelectedTab(tab)}
-                  >
-                    {tab}
-                  </TabButton>
-                ))}
-              </div>
+            <div className="mb-2 flex gap-2">
+              {(["npm", "pnpm", "yarn", "bun"] as const).map((tab) => (
+                <TabButton
+                  key={tab}
+                  active={selectedTab === tab}
+                  onClick={() => setSelectedTab(tab)}
+                >
+                  {tab}
+                </TabButton>
+              ))}
+            </div>
           ),
           code: installCommands[selectedTab],
         },
@@ -87,4 +89,4 @@ module.exports = {
       ]}
     />
   );
-} 
+}

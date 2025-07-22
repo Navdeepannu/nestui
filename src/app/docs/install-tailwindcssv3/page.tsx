@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { DocLayout } from "@/components/docs/DocLayout";
+import { DocLayout } from "@/components/docsLayout/DocLayout";
 import { TabButton, FileNamePill } from "@/components/ui/TabButton";
 
 const installCommands = {
@@ -14,11 +14,13 @@ const createProjectCommands = {
   npm: "npx create-next-app@latest my-app --typescript --eslint && cd my-app",
   pnpm: "pnpm dlx create-next-app@latest my-app --typescript --eslint && cd my-app",
   yarn: "yarn create next-app my-app --typescript --eslint && cd my-app",
-  bun: "bunx create-next-app@latest my-app --typescript --eslint && cd my-app"
+  bun: "bunx create-next-app@latest my-app --typescript --eslint && cd my-app",
 };
 
 export default function Page() {
-  const [selectedTab, setSelectedTab] = useState<"npm" | "pnpm" | "yarn" | "bun">("npm");
+  const [selectedTab, setSelectedTab] = useState<
+    "npm" | "pnpm" | "yarn" | "bun"
+  >("npm");
 
   return (
     <DocLayout
@@ -29,7 +31,7 @@ export default function Page() {
           title: "Create a new project",
           content: (
             <div className="">
-              <div className="flex gap-2 mb-2">
+              <div className="mb-2 flex gap-2">
                 {(["npm", "pnpm", "yarn", "bun"] as const).map((tab) => (
                   <TabButton
                     key={tab}
@@ -40,7 +42,11 @@ export default function Page() {
                   </TabButton>
                 ))}
               </div>
-              <p className="text-sm text-muted-foreground mt-1">For React, you can also use <FileNamePill>npx create-react-app my-app</FileNamePill> or your preferred setup.</p>
+              <p className="text-muted-foreground mt-1 text-sm">
+                For React, you can also use{" "}
+                <FileNamePill>npx create-react-app my-app</FileNamePill> or your
+                preferred setup.
+              </p>
             </div>
           ),
           code: createProjectCommands[selectedTab],
@@ -49,7 +55,7 @@ export default function Page() {
           title: "Install Tailwind CSS v3",
           content: (
             <div className="">
-              <div className="flex gap-2 mb-2">
+              <div className="mb-2 flex gap-2">
                 {(["npm", "pnpm", "yarn", "bun"] as const).map((tab) => (
                   <TabButton
                     key={tab}
@@ -90,4 +96,4 @@ module.exports = {
       ]}
     />
   );
-} 
+}

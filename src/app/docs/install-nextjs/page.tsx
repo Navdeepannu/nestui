@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { DocLayout } from "@/components/docs/DocLayout";
+import { DocLayout } from "@/components/docsLayout/DocLayout";
 import { TabButton } from "@/components/ui/TabButton";
 
 const installCommands = {

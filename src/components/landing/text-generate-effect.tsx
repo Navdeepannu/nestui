@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { motion, stagger, useAnimate } from "motion/react"; // Use framer-motion, not motion/react
+import { motion, stagger, useAnimate } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export const TextGenerateEffect = ({
@@ -35,7 +35,7 @@ export const TextGenerateEffect = ({
           ease: "easeIn",
         },
       );
-    }, initialDelay * 500);
+    }, initialDelay * 700);
 
     return () => clearTimeout(timeout);
   }, [scope, animate, filter, duration, initialDelay]);

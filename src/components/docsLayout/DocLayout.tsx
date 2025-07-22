@@ -33,7 +33,7 @@ export function DocLayout({
 
   return (
     <div className="text-foreground mt-10 ml-0 max-w-4xl px-4 font-sans">
-      <h1 className="text-foreground mb-1 text-4xl font-extrabold tracking-tight">
+      <h1 className="text-foreground mb-3 text-3xl font-extrabold tracking-tight md:text-4xl">
         {title}
       </h1>
       {description && (
@@ -59,7 +59,7 @@ export function DocLayout({
                   </div>
                   {step.code && mounted && (
                     <div className="group relative mt-2 ml-1">
-                      <div className="border-border max-w-full min-w-0 overflow-x-auto rounded-lg border shadow-sm shadow-neutral-50">
+                      <div className="border-border max-w-full min-w-0 overflow-x-auto rounded-lg border bg-neutral-100 shadow-sm shadow-neutral-50 dark:bg-neutral-800/30">
                         <SyntaxHighlighter
                           language={step.language || "tsx"}
                           style={resolvedTheme === "dark" ? vscDarkPlus : prism}

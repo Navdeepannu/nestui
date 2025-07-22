@@ -4,6 +4,10 @@ import { usePathname } from "next/navigation";
 import { IconX } from "@tabler/icons-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useRef, useEffect } from "react";
+import {
+  componentLinks,
+  gettingStartedLinks,
+} from "@/lib/data/sidebar-navigation";
 
 export default function Sidebar({
   sidebarOpen,
@@ -35,16 +39,6 @@ export default function Sidebar({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [sidebarOpen, setSidebarOpenAction]);
-  const gettingStartedLinks = [
-    { href: "/docs/introduction", label: "Introduction" },
-    { href: "/docs/install-nextjs", label: "Install Next.js" },
-    { href: "/docs/install-tailwindcssv4", label: "Install Tailwind CSS v4" },
-    { href: "/docs/install-tailwindcssv3", label: "Install Tailwind CSS v3" },
-  ];
-  const componentLinks = [
-    { href: "/components/button", label: "Button" },
-    { href: "/components/card", label: "Card" },
-  ];
 
   const renderLinks = (links: { href: string; label: string }[]) =>
     links.map((link) => {
@@ -73,7 +67,7 @@ export default function Sidebar({
   return (
     <>
       {/* Desktop Sidebar */}
-      <aside className="sidebar-desktop border-sidebar-accent w-64 border-r px-8 py-10">
+      <aside className="sidebar-desktop border-sidebar-accent bg-background fixed top-14 left-0 h-[calc(100vh-3.5rem)] w-64 overflow-y-auto border-r px-8 py-10">
         <nav className="flex h-full flex-col items-start justify-start">
           <ul className="w-full space-y-1">
             <li>
@@ -105,9 +99,9 @@ export default function Sidebar({
           >
             <div
               ref={sidebarRef}
-              className="dark:bg-background absolute top-0 left-0 h-full w-80 border-r border-zinc-200 bg-white shadow-xl dark:border-zinc-700"
+              className="dark:bg-background absolute top-0 left-0 flex h-full w-80 flex-col border-r border-zinc-200 bg-white shadow-xl dark:border-zinc-700"
             >
-              <div className="flex items-center justify-between border-b border-zinc-200 p-4 dark:border-zinc-700">
+              <div className="flex flex-shrink-0 items-center justify-between border-b border-zinc-200 p-4 dark:border-zinc-700">
                 <Link
                   href="/"
                   className="text-lg font-semibold text-zinc-900 dark:text-zinc-100"
@@ -122,7 +116,7 @@ export default function Sidebar({
                 </button>
               </div>
 
-              <nav className="p-4">
+              <nav className="flex-1 overflow-y-auto p-4">
                 <ul className="space-y-1">
                   <li>
                     <p className="mb-4 font-light tracking-wide text-neutral-500">
