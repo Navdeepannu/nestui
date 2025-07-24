@@ -13,5 +13,5 @@ export const gettingStartedLinks: navigation = [
 export const componentLinks: navigation = [
   { href: "/components/loader", label: "Loaders" },
   { href: "/components/button", label: "Buttons" },
-  { href: "/components/card", label: "Card" },
+  { href: "/components/blog-card", label: "Blog Card" },
 ];

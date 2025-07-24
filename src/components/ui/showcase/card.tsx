@@ -31,6 +31,7 @@ const BlogCard = ({
   date,
   readTime,
   image,
+  articleLink,
 }: {
   title: string;
   excerpt: string;
@@ -38,6 +39,7 @@ const BlogCard = ({
   date: string;
   readTime: string;
   image: string;
+  articleLink?: string;
 }) => {
   return (
     <motion.div
@@ -50,32 +52,33 @@ const BlogCard = ({
       }}
       transition={{ duration: 0.6, ease: "easeOut" }}
     >
-      <Card className="max-w-xl bg-neutral-50 dark:bg-neutral-800">
-        <div className="relative flex h-96">
+      <Card className="w-full max-w-2xl bg-neutral-50 dark:bg-neutral-800">
+        <div className="relative flex h-auto flex-col sm:h-96 sm:flex-row">
           {/* Left Image Section */}
           <motion.div
-            className="relative w-1/3 overflow-hidden"
+            className="relative h-48 w-full overflow-hidden sm:h-full sm:w-1/3"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
             <img
               src={image}
               alt={title}
-              className="h-full w-full rounded-l-xl object-cover"
+              className="h-full w-full rounded-t-xl object-cover sm:rounded-t-none sm:rounded-l-xl"
+              style={{ minWidth: "200px" }}
             />
           </motion.div>
 
           {/* Right Content Section */}
-          <div className="flex w-2/3 flex-col justify-between p-10">
+          <div className="flex w-full flex-col justify-between p-6 sm:w-2/3 sm:p-10">
             {/* Date and Read Time */}
-            <div className="mb-4 text-xs font-medium tracking-wider text-neutral-500 uppercase dark:text-neutral-400">
+            <div className="mb-3 text-xs font-medium tracking-wider text-neutral-500 uppercase sm:mb-4 dark:text-neutral-400">
               {date} • {readTime}
             </div>
 
             {/* Title and Excerpt */}
             <div className="flex-1">
               <motion.h3
-                className="mb-6 text-4xl leading-tight font-bold tracking-tight text-neutral-900 dark:text-neutral-100"
+                className="mb-4 text-2xl leading-tight font-bold tracking-tight text-neutral-900 sm:mb-6 sm:text-4xl dark:text-neutral-100"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
@@ -84,19 +87,19 @@ const BlogCard = ({
               </motion.h3>
 
               <motion.div
-                className="text-base leading-relaxed text-neutral-600 dark:text-neutral-300"
+                className="text-sm leading-relaxed text-neutral-600 sm:text-base dark:text-neutral-300"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
                 {excerpt && excerpt.length > 0 && (
                   <>
-                    <span className="text-3xl font-semibold tracking-wide text-neutral-900 dark:text-neutral-100">
+                    <span className="text-2xl font-semibold tracking-wide text-neutral-900 sm:text-3xl dark:text-neutral-100">
                       {excerpt.charAt(0)}
                     </span>
                     <span className="text-sm">
                       {excerpt.slice(1).split(" ").slice(0, 29).join(" ")}
-                      {excerpt.split(" ").length > 20 ? "..." : ""}
+                      {excerpt.split(" ").length > 30 ? "..." : ""}
                     </span>
                   </>
                 )}
@@ -105,16 +108,20 @@ const BlogCard = ({
 
             {/* Author and Continue Reading */}
             <motion.div
-              className="mt-10 border-t border-neutral-200 pt-6 dark:border-neutral-700"
+              className="mt-6 border-t border-neutral-200 pt-4 sm:mt-10 sm:pt-6 dark:border-neutral-700"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center sm:gap-0">
                 <div className="text-xs font-medium text-neutral-600 dark:text-neutral-300">
                   By {author}
                 </div>
-                <motion.button
+
+                <motion.a
+                  href={articleLink || "#"}
+                  target={articleLink ? "_blank" : "_self"}
+                  rel={articleLink ? "noopener noreferrer" : undefined}
                   className="flex cursor-pointer items-center space-x-2 text-xs font-medium tracking-wider text-neutral-500 uppercase transition-colors hover:text-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-200"
                   whileHover={{ x: 5 }}
                   whileTap={{ scale: 0.95 }}
@@ -135,7 +142,7 @@ const BlogCard = ({
                       d="M19 9l-7 7-7-7"
                     />
                   </motion.svg>
-                </motion.button>
+                </motion.a>
               </div>
             </motion.div>
           </div>
@@ -153,7 +160,7 @@ const BlogCard = ({
               whileTap={{ scale: 0.9 }}
               transition={{ duration: 0.2 }}
             >
-              <IconShare3 className="text-neutral-400" />
+              <IconShare3 className="h-4 w-4 text-neutral-400 sm:h-5 sm:w-5" />
             </motion.button>
           </motion.div>
         </div>

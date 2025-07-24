@@ -74,7 +74,7 @@ export function ComponentLayout({
     useState(false);
   const [installationMethod, setInstallationMethod] = useState<
     "cli" | "manual"
-  >("cli");
+  >("manual");
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -198,16 +198,6 @@ export function ComponentLayout({
           <div className="border-accent mb-6 border-b">
             <div className="-mb-px flex items-center gap-0">
               <button
-                onClick={() => setInstallationMethod("cli")}
-                className={`border-b-2 px-4 py-3 text-sm font-medium transition-colors ${
-                  installationMethod === "cli"
-                    ? "border-primary text-primary"
-                    : "text-muted-foreground hover:text-foreground border-transparent"
-                }`}
-              >
-                CLI
-              </button>
-              <button
                 onClick={() => setInstallationMethod("manual")}
                 className={`border-b-2 px-4 py-3 text-sm font-medium transition-colors ${
                   installationMethod === "manual"
@@ -216,6 +206,16 @@ export function ComponentLayout({
                 }`}
               >
                 Manual
+              </button>
+              <button
+                onClick={() => setInstallationMethod("cli")}
+                className={`border-b-2 px-4 py-3 text-sm font-medium transition-colors ${
+                  installationMethod === "cli"
+                    ? "border-primary text-primary"
+                    : "text-muted-foreground hover:text-foreground border-transparent"
+                }`}
+              >
+                CLI
               </button>
             </div>
           </div>
@@ -380,7 +380,7 @@ export function cn(...inputs: ClassValue[]) {
 
                         {/* Gradient overlay when collapsed */}
                         {!isInstallationCodeExpanded && (
-                          <div className="from-background pointer-events-none absolute right-0 bottom-0 left-0 h-16 bg-gradient-to-t to-transparent" />
+                          <div className="pointer-events-none absolute right-0 bottom-0 left-0 h-16 bg-gradient-to-t from-neutral-600 to-transparent dark:from-[#1c242c] dark:to-transparent" />
                         )}
 
                         {/* Animated Expand/Collapse Card */}
@@ -401,7 +401,7 @@ export function cn(...inputs: ClassValue[]) {
                             <motion.div className="border-accent rounded-xl border px-4 py-2 shadow-lg backdrop-blur-md transition-all duration-300 dark:bg-black">
                               <div className="flex items-center gap-1">
                                 <motion.span
-                                  className="text-foreground text-sm font-medium dark:text-neutral-300"
+                                  className="text-sm font-medium text-neutral-300 dark:text-neutral-300"
                                   layout
                                 >
                                   {isInstallationCodeExpanded
@@ -473,7 +473,7 @@ export function cn(...inputs: ClassValue[]) {
                       </code>
                     </td>
                     <td className="p-4">
-                      <code className="bg-muted rounded px-2 py-1 text-sm text-blue-200">
+                      <code className="bg-muted rounded px-2 py-1 text-sm text-sky-700 dark:text-sky-200">
                         {prop.type}
                       </code>
                     </td>
