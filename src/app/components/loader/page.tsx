@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { ComponentLayout } from "@/components/docsLayout/ComponentLayout";
-import { Loading } from "@/components/ui/loading";
+import { Loader } from "@/components/ui/showcase/loader";
 
 const loadingComponentCode = `"use client";
 
@@ -28,7 +28,7 @@ const sizeClasses: Record<Size, string> = {
 const cn = (...classes: (string | false | null | undefined)[]) =>
   classes.filter(Boolean).join(" ");
 
-const Loading = ({ size = "md", className }: LoadingProps) => {
+const loader = ({ size = "md", className }: LoadingProps) => {
   const sizeClass = sizeClasses[size];
 
   // Render animated loading dots
@@ -61,7 +61,7 @@ const Loading = ({ size = "md", className }: LoadingProps) => {
     <div
       className={cn("flex items-center gap-2", className)}
       role="status"
-      aria-label="Loading"
+      aria-label="loader"
     >
       {renderDots()}
     </div>
@@ -95,9 +95,9 @@ export default function LoadingDemo() {
 export default function LoadingPage() {
   return (
     <ComponentLayout
-      title="Loading"
+      title="Loader"
       description="Animated loading components using Framer Motion. Perfect for indicating loading states in your application."
-      preview={<Loading />}
+      preview={<Loader />}
       code={loadingDemo}
       installation={{
         packages: ["motion", "clsx", "tailwind-merge"],

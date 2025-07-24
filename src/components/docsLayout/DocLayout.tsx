@@ -5,6 +5,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { prism } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useTheme } from "next-themes";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 export function DocLayout({
   title,
@@ -26,6 +27,9 @@ export function DocLayout({
   const [copiedIdx, setCopiedIdx] = useState<number | null>(null);
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
+  // Set page title automatically based on doc title
+  usePageTitle(title);
 
   useEffect(() => {
     setMounted(true);

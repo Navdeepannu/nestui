@@ -1,4 +1,10 @@
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Components - Nest UI",
+  description: "Browse all available Nest UI components for your project",
+};
 
 const componentCategories = [
   {

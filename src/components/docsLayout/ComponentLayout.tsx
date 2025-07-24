@@ -25,6 +25,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
+import { usePageTitle } from "@/hooks/usePageTitle";
 
 interface ComponentLayoutProps {
   title: string;
@@ -76,6 +77,9 @@ export function ComponentLayout({
   >("cli");
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+
+  // Set page title automatically based on component title
+  usePageTitle(title);
 
   useEffect(() => {
     setMounted(true);
